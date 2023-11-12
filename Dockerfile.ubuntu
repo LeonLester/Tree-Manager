@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+
+# Update package lists and install Python, Node.js, and npm
+RUN apt-get update && \
+    apt-get install -y python3 \
+                       nodejs \
+                       npm
+
+# Additional dependencies or installations can be added here if needed
+
+# Set the working directory
+WORKDIR /app
+
+# To keep the container from closing
+CMD ["tail", "-f", "/dev/null"]

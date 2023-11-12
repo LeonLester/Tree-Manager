@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    container_name: mysql-container
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - my-network
+
+  ubuntu-container:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu
+    container_name: ubuntu-container
+    command: tail -f /dev/null
+    networks:
+      - my-network
+    depends_on:
+      - mysql
+    volumes:
+      - ./app:/app
+
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.react
+    container_name: react-app-container
+    ports:
+      - "5173:5173"
+    networks:
+      - my-network
+    depends_on:
+      - mysql
+    volumes:
+      - ./react-app:/react-app
+
+
+volumes:
+  mysql-data:
+
+networks:
+  my-network:
