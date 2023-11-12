@@ -1,14 +1,13 @@
 // src/App.js
-import { useState } from 'react';
 import Tree from './components/Tree';
+import "./index.css"
 
 const App = () => {
-  const [treeData, setTreeData] = useState([]);
 
   return (
-    <div >
+    <div className="container">
       <h1>Tree App</h1>
-      <Tree data={treeData} />
+      <Tree/>
     </div>
   );
 };

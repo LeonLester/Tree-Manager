@@ -67,3 +67,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.button_form {
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  height: 100vh; /* Adjust as needed */
+}
+
+
+.title {
+  color: #4E5166
+}
