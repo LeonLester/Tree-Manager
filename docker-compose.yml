@@ -14,18 +14,19 @@ services:
     networks:
       - my-network
 
-  ubuntu-container:
+  flask:
     build:
       context: .
-      dockerfile: Dockerfile.ubuntu
-    container_name: ubuntu-container
-    command: tail -f /dev/null
+      dockerfile: Dockerfile.flask
+    container_name: flask
     networks:
-      - my-network
+      - my-network    
     depends_on:
-      - mysql
+    - mysql
+    ports:
+      - "5050:5050"
     volumes:
-      - ./app:/app
+      - ./flask:/app
 
   react-app:
     build:
