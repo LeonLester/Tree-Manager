@@ -25,7 +25,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -79,6 +78,14 @@ button:focus-visible {
   height: 100vh; /* Adjust as needed */
 }
 
+
+.centered-tree {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust as needed */
+}
 
 .title {
   color: #4E5166
