@@ -42,8 +42,34 @@ const Tree = () => {
     }
     return;
   }
-
-  const handleAddNode = async (e) => {
+  
+  const handleAddNodeRecursive = async (e, currentNode, parentID) => {
+    fetchNodes();
+    e.preventDefault();
+    var root = false;
+  
+    if (!currentNode) {
+      // If currentNode is undefined, initialize it as the root node
+      root = true;
+      currentNode = { _node: { id: null }, children: nodes };
+    }
+  
+    if (currentNode._node.id === parentID) {
+      // Case 1: The current node is the parent node.
+      addNode(root);
+      return;
+    }
+  
+    // Case 2: Check if the parent ID exists in the children of the current node.
+    for (const childNode of currentNode.children || []) {
+      await handleAddNodeRecursive(e, childNode, parentID);
+    }
+  };
+  
+  // Example usage:
+  // Assume parentId is the ID of the parent node you want to find.
+  handleAddNodeRecursive(event, undefined, parentId);
+  const handleAddNode = async (e, currentNode, parent_Id) => {
     fetchNodes();
     e.preventDefault();
     var root = false;
@@ -83,7 +109,7 @@ const Tree = () => {
 
   const renderTree = (parentNode, depth = 1) => {
     // Calculate font size based on the depth
-    const fontSize = 16 - depth * 2;
+    const fontSize = 12; //- depth * 2;
   
     return (
       <div key={parentNode._node.id} style={{ maxWidth: '50%', margin: '0 auto', textAlign: 'center' }}>
