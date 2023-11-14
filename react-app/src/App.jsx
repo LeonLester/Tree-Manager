@@ -6,7 +6,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Tree App</h1>
+      <h1>Tree Manager</h1>
       <Tree/>
     </div>
   );

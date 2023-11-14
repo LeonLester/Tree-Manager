@@ -6,7 +6,6 @@ const Tree = () => {
   const [nodes, setNodes] = useState([]);
   const [parentId, setParentId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
   useEffect(() => {
     fetchNodes();
    }, []);
@@ -48,13 +47,13 @@ const Tree = () => {
     e.preventDefault();
     var root = false;
   
-    if (!currentNode) {
+    if (!currentNode && nodes.length === 0) {
       // If currentNode is undefined, initialize it as the root node
       root = true;
       currentNode = { _node: { id: null }, children: nodes };
     }
   
-    if (currentNode._node.id === parentID) {
+    if (currentNode?._node.id === parentID) {
       // Case 1: The current node is the parent node.
       addNode(root);
       return;
@@ -66,46 +65,6 @@ const Tree = () => {
     }
   };
   
-  // Example usage:
-  // Assume parentId is the ID of the parent node you want to find.
-  handleAddNodeRecursive(event, undefined, parentId);
-  const handleAddNode = async (e, currentNode, parent_Id) => {
-    fetchNodes();
-    e.preventDefault();
-    var root = false;
-    if (nodes.length === 0) {
-      root = true;
-      // If the list is empty, you can add the node without checking for the parent's existence.
-      addNode(root);
-      return;
-    }
-
-    console.log(parentId);
-    const isParentIdValid = nodes.some(node => {
-    console.log(node._node.id);
-
-    if (node._node.id == parentId) {
-      // Case 1: The parent node exists.
-      return true;
-    }
-
-    console.log(node.children);
-    // Case 2: Check if the parent ID exists in the children of the current node. childNode._node.id === parentId
-    return node.children.some(childNode => childNode._node.id == parentId );
-    });
-
-    console.log(isParentIdValid);
-    console.log(nodes);
-    if (!isParentIdValid) {
-      setErrorMessage(`Error: Parent node with id ${parentId} does not exist.`);
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 2000);
-      return;
-    }
-  
-    addNode(root);
-  };
 
   const renderTree = (parentNode, depth = 1) => {
     // Calculate font size based on the depth
@@ -132,13 +91,13 @@ const Tree = () => {
     <div name="Tree">
       {nodes.map(node => renderTree(node))}
     </div>
-      <form className="button_form" onSubmit={(e) => handleAddNode(e)}>
+      <form className="button_form" onSubmit={(e) => handleAddNodeRecursive(e)}>
           <input
             type="text"
             value={parentId}
             onChange={(e) => setParentId(e.target.value)}
           />
-          <button onClick={handleAddNode}>Add Node</button>
+          <button onClick={handleAddNodeRecursive}>Add Node</button>
       <button type="button" onClick={handleEmptyTree} >Clear Tree</button>
 
       </form>
