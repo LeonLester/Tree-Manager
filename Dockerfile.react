@@ -5,7 +5,8 @@ FROM node:14 AS install_packages
 WORKDIR /react-app
 
 # Copy package.json and package-lock.json to the working directory
-COPY react-app/package*.json ./
+COPY react-app/package.json /react-app/package.json
+COPY react-app/package-lock.json /react-app/package-lock.json
 
 # Install Vite globally
 RUN     npm install -g create-vite \

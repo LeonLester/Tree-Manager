@@ -18,7 +18,7 @@ INSERT INTO Node (parent_ID) VALUES (1);
 INSERT INTO Node (parent_ID) VALUES (1);
 
 -- Insert level 2 nodes
-INSERT INTO Node (parent_ID) VALUES (4, 2);
-INSERT INTO Node (parent_ID) VALUES (5, 2);
-INSERT INTO Node (parent_ID) VALUES (6, 3);
-INSERT INTO Node (parent_ID) VALUES (7, 3);
+INSERT INTO Node (parent_ID) VALUES (2);
+INSERT INTO Node (parent_ID) VALUES (2);
+INSERT INTO Node (parent_ID) VALUES (3);
+INSERT INTO Node (parent_ID) VALUES (3);
