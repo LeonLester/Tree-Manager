@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.10
+FROM python:3.10 AS install_packages
 
 # Set the working directory to /app
 WORKDIR /app
@@ -10,6 +10,7 @@ COPY flask/ /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
+FROM install_packages
 # Make port 3001 available to the world outside this container
 EXPOSE 5050
 
