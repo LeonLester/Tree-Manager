@@ -1,23 +1,21 @@
 # Use an official Node runtime as a parent image
-FROM node:14
+FROM node:14 AS install_packages
 
 # Set the working directory in the container
 WORKDIR /react-app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY react-app/package*.json ./
 
 # Install Vite globally
-RUN npm install -g create-vite
+RUN     npm install -g create-vite \
+    &&  create-vite react-app --template react \
+    &&  cd /react-app/react-app \
+    &&  npm install
 
-# Create a new Vite React app
-RUN create-vite react-app --template react
-
+FROM install_packages 
 # Set the working directory to the newly created app
 WORKDIR /react-app/react-app
-
-# Install app dependencies
-RUN npm install
 
 # Expose port 3000
 EXPOSE 3000
