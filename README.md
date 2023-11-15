@@ -24,15 +24,16 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Tree Manager</h3>
 
   <p align="center">
-    project_description
+    An app that shows a tree structure and allows the user to add nodes by specifying the ID of the parent node to which he wants to add a node.
+    The user can also clear the tree to start from scratch.
     <br />
     <a href="https://github.com/LeonLester/Tree-Manager"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/LeonLester/Tree-Manager">View Demo</a>
+    <!-- <a href="https://github.com/LeonLester/Tree-Manager">View Demo</a> -->
     ·
     <a href="https://github.com/LeonLester/Tree-Manager/issues">Report Bug</a>
     ·
@@ -73,9 +74,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `leokaragiannis`, `email_client`, `email`, `project_title`, `project_description`
+This is a fully portable full-stack app, developed for a technical interview with Oracle.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,7 +95,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is a simple project that showcases the communication between a mysql database, a Python Flask app and a Vite React app 
+You only need to follow a few steps to reproduce.
 
 ### Prerequisites
 
@@ -123,17 +124,16 @@ docker-compose (was tested on v.2.23.0-desktop.1)
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+To use the web application after deploying it, navigate on your browser to the following URL:
+   ```sh
+   http://localhost:5173
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- CONTRIBUTING -->
 ## Contributing
-
-This is an interview task provided for Oracle.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
@@ -160,7 +160,7 @@ Distributed under the GPTv3 License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@linkedin_handle](https://linkedin.com/in/leokaragiannis) - leonidask914@gmail.com
+Leonidas Karagiannis - [@leokaragiannis](https://linkedin.com/in/leokaragiannis) - leonidask914@gmail.com
 
 Project Link: [https://github.com/LeonLester/Tree-Manager](https://github.com/LeonLester/Tree-Manager)
 
