@@ -5,32 +5,31 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.mysql
-    container_name: mysql-container
     ports:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - my-network
 
-  ubuntu-container:
+  flask:
     build:
       context: .
-      dockerfile: Dockerfile.ubuntu
-    container_name: ubuntu-container
-    command: tail -f /dev/null
+      dockerfile: Dockerfile.flask
     networks:
-      - my-network
+      - my-network    
     depends_on:
-      - mysql
+    - mysql
+    ports:
+      - "5050:5050"
     volumes:
-      - ./app:/app
+      - ./flask:/app
 
   react-app:
     build:
       context: .
       dockerfile: Dockerfile.react
-    container_name: react-app-container
     ports:
       - "5173:5173"
     networks:
@@ -38,7 +37,7 @@ services:
     depends_on:
       - mysql
     volumes:
-      - ./react-app:/react-app
+      - ./react-app:/react-app/react-app
 
 
 volumes:
