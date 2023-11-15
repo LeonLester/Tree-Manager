@@ -4,7 +4,7 @@ import mysql.connector
 from flask_cors import CORS
 import sys
 app = Flask(__name__)
-CORS(app)#, resources={r"/api/*": {"origins": "http://react-app-container:5173"}})
+CORS(app)
 
 # MySQL database configuration
 db_config = {
@@ -25,6 +25,7 @@ def manage_nodes():
             with mysql.connector.connect(**db_config) as connection, connection.cursor(dictionary=True) as cursor:
                 cursor.execute('SELECT * FROM Node')
                 rows = cursor.fetchall()
+                print(rows)
                 tree_data = transform_data(rows)
             
             return jsonify(tree_data), 200
