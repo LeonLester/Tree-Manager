@@ -38,10 +38,12 @@ services:
       - mysql
     volumes:
       - ./react-app:/react-app
+      # - exclude:/react-app/node_modules/
 
 
 volumes:
   mysql-data:
+  exclude:
 
 networks:
   my-network:
