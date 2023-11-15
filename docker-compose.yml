@@ -36,8 +36,8 @@ services:
       - my-network
     depends_on:
       - mysql
-    # volumes:
-      # - ./react-app:/react-app
+    volumes:
+      - ./react-app:/react-app/react-app
       # - exclude:/react-app/node_modules/
 
 

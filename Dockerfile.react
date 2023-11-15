@@ -5,23 +5,19 @@ FROM node:21.1.0 AS install_packages
 WORKDIR /react-app
 
 # Copy package.json and package-lock.json to the working directory
+COPY react-app/package.json react-app/package-lock.json /react-app/
 
-COPY react-app /react-app/react-app
-
-# Install Vite globally
-RUN npm install -g create-vite
+# Install dependencies
+RUN npm install
 
 # Create the Vite app
+RUN npm install -g create-vite
 RUN create-vite react-app --template react
 
 FROM install_packages AS final_image
 
 # Set the working directory to the newly created app
 WORKDIR /react-app/react-app
-
-
-# Install dependencies
-RUN npm install
 
 # Expose port 3000
 EXPOSE 3000
