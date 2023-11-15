@@ -98,7 +98,7 @@ This is a simple project that showcases the communication between a mysql databa
 
 ### Prerequisites
 
-You need to have Docker and docker-compose installed.
+docker-compose (was tested on v.2.23.0-desktop.1)
 
 ### Installation
 
