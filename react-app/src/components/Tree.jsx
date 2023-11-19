@@ -3,9 +3,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Tree = () => {
+  // every time the set function of a state gets called, the component
+  // that contains this state gets updated.
   const [nodes, setNodes] = useState([]);
   const [parentId, setParentId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  
+  // this runs only once at every refresh
   useEffect(() => {
     fetchNodes();
    }, []);
@@ -21,7 +25,7 @@ const Tree = () => {
 
   const handleEmptyTree = async () => {
     try {
-      await axios.post('http://localhost:5050/api/nodes', {truncate: true})
+      await axios.post('http://localhost:5050/api/nodes/truncate')
       await fetchNodes();
     } catch (error) {
       console.error('Error adding node:', error)
@@ -29,57 +33,29 @@ const Tree = () => {
     return;
   }
 
-  const addNode = async (root) => {
-    const data = root ? {ID: parentId} : { parent_ID: parentId }
+  const addNode = async (e) => {
+    e.preventDefault();
+    const data = nodes.length === 0
+    ? { ID: parentId }
+    : { parent_ID: parentId };
     try {
       await axios.post('http://localhost:5050/api/nodes', data)
       await fetchNodes();
     } catch (error) {
-      console.error('Error adding node:', error)
+      console.error('Error adding node:', error);
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(`Error: Parent node with ID ${parentId} does not exist.`);
+      } else {
+        // Default error message for other errors
+        setErrorMessage('Error: Failed to add node.');
+      }
+  
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 2000);
     }
     return;
   }
-  
-  const handleAddNodeRecursive = async (e, currentNode, parentID, root = false) => {
-    fetchNodes();
-    e.preventDefault();
-
-    console.log(currentNode, parentID);
-    
-    if (!currentNode && nodes.length === 0) {
-      // If currentNode is undefined, initialize it as the root node
-      root = true;
-      console.log("case1");
-      currentNode = { _node: { id: null }, children: nodes };
-      await addNode(root);
-      return;
-    }
-
-    if (!currentNode) {
-      // If currentNode is still undefined, initialize it with the provided parentID
-      currentNode = { _node: { id: parentID }, children: [] };
-    }
-  
-    console.log("here3");
-    if (currentNode?._node.id === parentID) {
-      console.log("here2");
-      // Case 1: The current node is the parent node.
-      await addNode(root);
-      return;
-    }
-    
-    // Case 2: Check if the parent ID exists in the children of the current node.
-    for (const childNode of currentNode?.children || []) {
-      console.log("here4");
-      await handleAddNodeRecursive(e, childNode, parentID);
-    }
-    // Code should only reach here when the tree is not empty, 
-    setErrorMessage(`Error: Parent node with id ${parentId} does not exist.`);
-    setTimeout(() => {
-      setErrorMessage('');
-    }, 2000);
-    return;
-  };
   
 
   const renderTree = (parentNode, depth = 1) => {
@@ -107,14 +83,14 @@ const Tree = () => {
     <div name="Tree">
       {nodes.map(node => renderTree(node))}
     </div>
-      <form className="button_form" onSubmit={(e) => handleAddNodeRecursive(e, undefined, parentId)}>
+      <form className="button_form" onSubmit={(e) => addNode(e, parentId)}>
           <input
             type="text"
             value={parentId}
             onChange={(e) => setParentId(e.target.value)}
           />
-          <button onClick={(e) => handleAddNodeRecursive(e, undefined, parentId)}>Add Node</button>
-      <button type="button" onClick={handleEmptyTree} >Clear Tree</button>
+          <button onClick={(e) => addNode(e, parentId)}>Add Node</button>
+          <button type="button" onClick={handleEmptyTree} >Clear Tree</button>
 
       </form>
     {errorMessage && (
