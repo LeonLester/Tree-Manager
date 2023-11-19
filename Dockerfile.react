@@ -7,12 +7,13 @@ WORKDIR /react-app
 # Copy package.json and package-lock.json to the working directory
 COPY react-app/package.json react-app/package-lock.json /react-app/
 
-# Install dependencies
-RUN npm install
+# TODO: Combine run commands in one
 
+# Install dependencies
+RUN     npm install \
 # Create the Vite app
-RUN npm install -g create-vite
-RUN create-vite react-app --template react
+    &&  npm install -g create-vite \
+    &&  create-vite react-app --template react
 
 FROM install_packages AS final_image
 
