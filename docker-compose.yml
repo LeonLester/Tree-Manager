@@ -13,18 +13,27 @@ services:
     networks:
       - my-network
 
-  flask:
+  perl-app:
     build:
       context: .
-      dockerfile: Dockerfile.flask
-    networks:
-      - my-network    
-    depends_on:
-    - mysql
+      dockerfile: Dockerfile.perl
     ports:
-      - "5050:5050"
-    volumes:
-      - ./flask:/app
+      - "3000:3000"
+    depends_on:
+      - mysql
+
+  # flask:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.flask
+  #   networks:
+  #     - my-network    
+  #   depends_on:
+  #   - mysql
+  #   ports:
+  #     - "5050:5050"
+  #   volumes:
+  #     - ./flask:/app
 
   vue-app:
     build:
