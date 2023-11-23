@@ -26,10 +26,10 @@ services:
     volumes:
       - ./flask:/app
 
-  react-app:
+  vue-app:
     build:
       context: .
-      dockerfile: Dockerfile.react
+      dockerfile: Dockerfile.vue
     ports:
       - "5173:5173"
     networks:
@@ -37,7 +37,7 @@ services:
     depends_on:
       - mysql
     volumes:
-      - ./react-app:/react-app/react-app
+      - ./vue-app:/vue-app/vue-app
 
 
 volumes:

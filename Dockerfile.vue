@@ -2,21 +2,19 @@
 FROM node:21.1.0 AS install_packages
 
 # Set the working directory in the container
-WORKDIR /react-app
+WORKDIR /vue-app
 
 # Copy package.json and package-lock.json to the working directory
-COPY react-app/package.json react-app/package-lock.json /react-app/
+COPY vue-app/package.json vue-app/package-lock.json /vue-app/
 
 # Install dependencies
-RUN     npm install \
-# Create the Vite app
-    &&  npm install -g create-vite \
-    &&  create-vite react-app --template react
+RUN npm install -g create-vite \
+    && create-vite vue-app --template vue
 
 FROM install_packages AS final_image
 
 # Set the working directory to the newly created app
-WORKDIR /react-app/react-app
+WORKDIR /vue-app/vue-app
 
 # Expose port 3000
 EXPOSE 3000
