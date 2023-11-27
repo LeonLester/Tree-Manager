@@ -70,7 +70,6 @@ options '/api/nodes' => sub {
 # Route to add a node
 post '/api/nodes' => sub {
     my $c = shift;
-        app->log->debug("aaa");
     try {
         my $data      = $c->req->json;
         my $id        = $data->{ID};
@@ -118,10 +117,8 @@ post '/api/nodes' => sub {
 # Route to clear the whole tree
 post '/api/nodes/truncate' => sub {
     my $c = shift;
-
     try {
         my $dbh = $c->app->db;
-
         # Truncate the Node table
         my $truncate_sth = $dbh->prepare('TRUNCATE TABLE Node');
         $truncate_sth->execute;
