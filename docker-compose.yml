@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -18,36 +18,27 @@ services:
       context: .
       dockerfile: Dockerfile.perl
     ports:
-      - "3000:3000"
-    depends_on:
-      - mysql
-
-  # flask:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.flask
-  #   networks:
-  #     - my-network    
-  #   depends_on:
-  #   - mysql
-  #   ports:
-  #     - "5050:5050"
-  #   volumes:
-  #     - ./flask:/app
-
-  vue-app:
-    build:
-      context: .
-      dockerfile: Dockerfile.vue
-    ports:
-      - "5173:5173"
+      - "3001:3000"
     networks:
       - my-network
     depends_on:
       - mysql
     volumes:
-      - ./vue-app:/vue-app/vue-app
+      - ./perl_app:/perl_app
 
+
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.react
+    ports:
+      - "5175:5173"
+    networks:
+      - my-network
+    depends_on:
+      - mysql
+    volumes:
+      - ./react-app:/react-app/react-app
 
 volumes:
   mysql-data:

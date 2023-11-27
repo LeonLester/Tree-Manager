@@ -9,3 +9,6 @@ CREATE TABLE Node
   PRIMARY KEY (ID),
   FOREIGN KEY (parent_ID) REFERENCES Node(ID)
 );
+
+USE mysql;
+ALTER USER "root" IDENTIFIED BY "root";

@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql:8.2
 
 # Environment variables for MySQL
 ENV MYSQL_ROOT_PASSWORD=root
@@ -9,4 +9,4 @@ ENV MYSQL_PASSWORD=root
 # Copy the SQL script to initialize the database schema
 COPY ./db/init.sql /docker-entrypoint-initdb.d/
 
-# Additional configuration or customizations can be added here if needed
+EXPOSE 3306
