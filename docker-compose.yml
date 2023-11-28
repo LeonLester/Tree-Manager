@@ -13,6 +13,7 @@ services:
     networks:
       - my-network
 
+
   perl-app:
     build:
       context: .
@@ -39,6 +40,17 @@ services:
     volumes:
       - ./vue-app:/vue-app/vue-app
 
+  helloworld:
+    build:
+      context: .
+      dockerfile: Dockerfile.init
+    environment:
+      - MYSQL_URL=http://localhost
+      - MYSQL_PORT=3307
+      - BACKEND_URL=http://localhost
+      - BACKEND_PORT=3001
+      - FRONTEND_URL=http://localhost
+      - FRONTEND_PORT=5173
 
 volumes:
   mysql-data:

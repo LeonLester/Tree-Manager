@@ -8,8 +8,9 @@ WORKDIR /vue-app
 COPY vue-app/package.json vue-app/package-lock.json /vue-app/
 
 # Install dependencies
-RUN npm install -g create-vite \
-    && create-vite vue-app --template vue
+RUN     npm install \
+    &&  npm install -g create-vite \
+    &&  create-vite vue-app --template vue
 
 FROM install_packages AS final_image
 
@@ -20,4 +21,5 @@ WORKDIR /vue-app/vue-app
 EXPOSE 3000
 
 # Use the npm script to run the development server
-CMD ["npm", "run", "dev"]
+# CMD ["npm", "run", "dev"]
+CMD ["sleep", "infinity"]
