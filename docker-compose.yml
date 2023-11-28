@@ -6,39 +6,39 @@ services:
       context: .
       dockerfile: Dockerfile.mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - my-network
 
-  flask:
+  perl-app:
     build:
       context: .
-      dockerfile: Dockerfile.flask
-    networks:
-      - my-network    
-    depends_on:
-    - mysql
+      dockerfile: Dockerfile.perl
     ports:
-      - "5050:5050"
+      - "3001:3000"
+    networks:
+      - my-network
+    depends_on:
+      - mysql
     volumes:
-      - ./flask:/app
+      - ./perl_app:/perl_app
+
 
   react-app:
     build:
       context: .
       dockerfile: Dockerfile.react
     ports:
-      - "5173:5173"
+      - "5175:5173"
     networks:
       - my-network
     depends_on:
       - mysql
     volumes:
       - ./react-app:/react-app/react-app
-
 
 volumes:
   mysql-data:

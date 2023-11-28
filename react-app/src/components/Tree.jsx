@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+
 const Tree = () => {
   // every time the set function of a state gets called, the component
   // that contains this state gets updated.
@@ -9,6 +11,8 @@ const Tree = () => {
   const [parentId, setParentId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   
+  const backend_location = 'http://localhost:3001';
+  console.log(`${backend_location}`);
   // this runs only once at every refresh
   useEffect(() => {
     fetchNodes();
@@ -16,7 +20,7 @@ const Tree = () => {
 
   const fetchNodes = async () => {
     try {
-      const response = await axios.get('http://localhost:5050/api/nodes', {"Access-Control-Allow-Origin": "*"});
+      const response = await axios.get(`${backend_location}/api/nodes`, {"Access-Control-Allow-Origin": "*"});
       setNodes(response.data);
     } catch (error) {
       console.error('Error fetching tree data:', error);
@@ -25,7 +29,7 @@ const Tree = () => {
 
   const handleEmptyTree = async () => {
     try {
-      await axios.post('http://localhost:5050/api/nodes/truncate')
+      await axios.post(`${backend_location}/api/nodes/truncate`)
       await fetchNodes();
     } catch (error) {
       console.error('Error adding node:', error)
@@ -39,7 +43,7 @@ const Tree = () => {
     ? { ID: parentId }
     : { parent_ID: parentId };
     try {
-      await axios.post('http://localhost:5050/api/nodes', data)
+      await axios.post(`${backend_location}/api/nodes`, data)
       await fetchNodes();
     } catch (error) {
       console.error('Error adding node:', error);
