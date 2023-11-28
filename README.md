@@ -84,8 +84,8 @@ This is a fully portable full-stack app, developed for a technical interview wit
 
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Python][Python.com]][Python-url]
+* [![Vue][Vue.js]][Vue-url]
+* [![Perl][Perl.com]][Perl-url]
 * [![Docker][Docker.com]][Docker-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -192,9 +192,9 @@ Project Link: [https://github.com/LeonLester/Tree-Manager](https://github.com/Le
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/leokaragiannis
 [product-screenshot]: images/screenshot.png
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Python.com]: https://img.shields.io/badge/Python-0769AD?style=for-the-badge&logo=Python&logoColor=white
-[Python-url]: https://python.com 
+[Vue.js]: https://img.shields.io/badge/Vue-20232A?style=for-the-badge&logo=vue&logoColor=61DAFB
+[Vue-url]: https://vuejs.org/
+[Perl.com]: https://img.shields.io/badge/Perl-0769AD?style=for-the-badge&logo=Perl&logoColor=white
+[Perl-url]: https://perl.org 
 [Docker.com]: https://img.shields.io/badge/Docker-0769AD?style=for-the-badge&logo=Docker&logoColor=white
 [Docker-url]: https://docker.com
