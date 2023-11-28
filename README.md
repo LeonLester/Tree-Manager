@@ -114,9 +114,9 @@ docker-compose (was tested on v.2.23.0-desktop.1)
 4. Navigate to the repo folder and start the docker-compose
    ```sh
    cd Tree-Manager/
-   docker-compose up -d
+   docker-compose up -d && docker-compose logs helloworld
    ```
-
+   This will provide you with the information on how and where to access each service.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 

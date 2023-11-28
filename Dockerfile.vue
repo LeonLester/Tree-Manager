@@ -21,5 +21,4 @@ WORKDIR /vue-app/vue-app
 EXPOSE 3000
 
 # Use the npm script to run the development server
-# CMD ["npm", "run", "dev"]
-CMD ["sleep", "infinity"]
+CMD ["npm", "run", "dev"]

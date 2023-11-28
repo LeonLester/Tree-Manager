@@ -17,7 +17,6 @@ services = {
 
 for name, info in services.items():
     if name == 'mysql':
-        print(f"To connect to the MySQL database, you can use the command: \n \
-        mysql -u root -p --port {info["port"]} --protocol tcp")
+        print(f"To connect to the MySQL database, you can use the command:\nmysql -u root -p --port {info['port']} --protocol tcp")
     print(f'{name} can be found at {info["url"]}:{info["port"]}')
 
